@@ -1,0 +1,137 @@
+.hide {
+  display: none;
+}
+
+body > section > header {
+  background-color: #e74c3c;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+section header > nav:not(.on-right) a,
+section header > nav:not(.on-right) button {
+  color: #fff;
+  text-shadow: none;
+}
+
+section header > nav.on-right a,
+section header > nav.on-right button {
+  color: #fff;
+  -webkit-text-shadow: none;
+  -moz-text-shadow: none;
+  -o-text-shadow: none;
+  text-shadow: none;
+}
+
+body > section > header .title {
+  -webkit-text-shadow: none;
+  -moz-text-shadow: none;
+  -o-text-shadow: none;
+  text-shadow: none;
+}
+
+.list li .on-right:not(.tag) {
+  padding-right: 2em;
+}
+
+body > section > footer {
+  background-color: #fafafa;
+}
+
+section > footer > nav > a {
+  color: #bdc3c7;
+}
+
+section > footer > nav > a {
+  -webkit-transition: color 300ms ease 0;
+  -moz-transition: color 300ms ease 0;
+  -o-transition: color 300ms ease 0;
+  transition: color 300ms ease 0;
+}
+
+section > footer > nav > a:active,
+section > footer > nav > a.active {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: #e74c3c;
+}
+
+section > footer > nav > .current {
+  color: #e74c3c;
+}
+
+section .list li {
+  position: relative;
+}
+
+section .list li > .submenu {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: black;
+}
+
+section .list li.selectable:active {
+  background-color: #e74c3c;
+}
+
+section .list li.selectable:active .brand-color {
+  color: white;
+}
+
+.tag:not(.icon).count {
+  -webkit-border-radius: 0.4em;
+  -moz-border-radius: 0.4em;
+  -ms-border-radius: 0.4em;
+  -o-border-radius: 0.4em;
+  border-radius: 0.4em;
+  background-color: #2c3e50;
+}
+
+.brand-color {
+  color: #e74c3c;
+}
+
+
+/* ANIMATIONS */
+
+.in, 
+.out { 
+    -webkit-animation-timing-function: ease-in-out; 
+    -webkit-animation-duration: 400ms; 
+}
+
+/* Screen pushes out to left */ 
+@-webkit-keyframes outToLeft { 
+    from { -webkit-transform: translateX(0); } 
+    to { -webkit-transform: translateX(-100%); } 
+}
+
+/* Screen pushes out to right */ 
+@-webkit-keyframes outToRight { 
+    from { -webkit-transform: translateX(0); } 
+    to { -webkit-transform: translateX(100%); } 
+}
+
+/* Screen pushes in from the left */ 
+@-webkit-keyframes inFromLeft { 
+    from { -webkit-transform: translateX(-100%); } 
+    to { -webkit-transform: translateX(0); } 
+} 
+
+.push.in.left {
+  -webkit-animation-name: inFromLeft;
+}
+
+.push.out.left { 
+    -webkit-animation-name: outToLeft; 
+}
+
+.push.out.right {
+  -webkit-animation-name: outToRight;
+}
