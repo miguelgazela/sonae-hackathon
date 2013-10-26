@@ -51,12 +51,30 @@
             </article>
             
 
-            <article id="layout-store">
-                <div class="empty">
+            <article id="store" class="list indenteds scroll">
+                <!-- <div class="empty">
                     <span class="icon sitemap"></span>
                     <strong>Store</strong>
                     <small>This will show the store categories.</small>
+                    
+                    
+                </div> -->
+                <div id="list-promos"class="horizontal scroll">
+	                <div id="scroller">
+						<div class="nav">
+					    	<a class="prev">&laquo;</a>
+							<a class="next">&raquo;</a>
+						</div>
+							<!-- <a class="item" href="#"><img src="img/promos/teste1.png width="500" height="128" /></a> -->
+							<a class="item" href="#"><img src="http://i.imgur.com/79aU67L.jpg" width="128" height="128"/></a>
+							<a class="item" href="#"><img src="http://i.imgur.com/x3wSoFU.jpg" width="128" height="128"/></a>
+							<a class="item" href="#"><img src="http://i.imgur.com/27fTqbA.jpg" width="128" height="128"/></a>
+							<a class="item" href="#"><img src="http://i.imgur.com/RjdFV6n.jpg" width="128" height="128"/></a>
+							<a class="item" href="#"><img src="http://i.imgur.com/6W8JOza.jpg" width="128" height="128"/></a>
+							<a class="item" href="#"><img src="http://i.imgur.com/rwLY1JH.jpg" width="128" height="128"/></a>
+					</div>
                 </div>
+                <ul id="list-products"></ul>
             </article>
 
             <article id="layout-favorites">
@@ -110,7 +128,7 @@
             <footer>
                 <nav>
                     <a href="#" data-view-article="main-article" data-icon="search"></a>
-                    <a href="#" data-view-article="layout-store" data-icon="sitemap"></a>
+                    <a href="#" data-view-article="store" data-icon="sitemap"></a>
                     <a href="#" data-view-article="layout-favorites" data-icon="star"></a>
                     <a href="#" data-view-article="layout-shopping-cart" data-icon="shopping-cart"></a>
                     <a href="#" data-view-article="layout-lists" data-icon="list"></a>
@@ -123,10 +141,27 @@
         <script id="tmpl-user" type="text/x-jquery-tmpl">
           <a href="#" class="list-group-item">
             <h4 class="list-group-item-heading">${name}</h4>
-            <p class="list-group-item-text">${fav_color}</p>
+            <p class="list-group-item-text">teste1</p>
           </a>
         </script>
-
+        
+        
+       <script id="tmpl-promo" type="text/x-jquery-tmpl">
+       <!--	<a class="item" href="#"><img src=${img} width="500" height="200" /></a>-->
+       </script>
+       
+        
+        <script id="tmpl-store" type="text/x-jquery-tmpl">
+			<li class="thumb arrow">
+				<img src="${img}" />
+				<div>
+					<strong>${name}</strong>
+					<small>${brand} - ${description}</small>
+					<span class="text tiny opacity"><span class="brand-color">€ ${price} - </span>${alt_price} /lt</span>
+				</div>
+			</li>
+		</script>
+		
         <script src="js/vendor/quo.js"></script>
         <script src="js/vendor/lungo.js"></script>
         <script src="js/vendor/jquery-1.10.1.min.js"></script>
