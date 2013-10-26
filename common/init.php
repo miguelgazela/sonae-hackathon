@@ -1,11 +1,7 @@
 <?php
-    // Connect to the Database
-try {    
-$db = new PDO("sqlite:../database/database.db");
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-}
-	var_dump($db);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    //$BASE_PATH = '/usr/users2/mieic2010/ei10076/public_html/projects/sonae-hackathon/';
+    $BASE_PATH = '/Users/migueloliveira/Dropbox/projects/sonae-hackathon/';
+
+    require_once('database.php');
 ?>
