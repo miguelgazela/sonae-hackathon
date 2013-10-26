@@ -32,24 +32,25 @@
         
         <!--<section id="main" data-transition="slide" data-aside="features" class="drag">-->
         <section id="main" data-transition="slide" class="drag">
-            <header data-title="Search">
+            <header data-title="Pesquisa">
                 <nav>
-                    <a href="#" data-view-aside="features" data-icon="menu"></a>
+                    <a href="#" data-view-aside="features" data-article="search" data-icon="shopping-cart"></a>
+                    <a href="#" data-view-aside="features" data-article="favorites" data-icon="shopping-cart"></a>
+                    <a href="#" class="back" data-icon="chevron-left" data-article="product-detail" data-view-article="favorites"></a>
                 </nav>
                 <nav class="on-right">
                     <button data-article="layout-shopping-cart" data-icon="ok"></button>
-                    <a href="#" data-view-aside="features" data-article="layout-lists" data-icon="sign"></a>
+                    <a href="#" data-view-aside="features" data-view-article="add_list" data-title="Nova Lista" data-article="lists" data-icon="sign"></a>
                 </nav>
             </header>
 
-            <article id="main-article">
+            <article id="search">
                 <div class="empty">
                     <span class="icon search"></span>
                     <strong>Product Search</strong>
                     <small>You will have an awesome search tool</small>
                 </div>
             </article>
-            
 
             <article id="store" class="list indenteds scroll">
                 <!-- <div class="empty">
@@ -77,23 +78,55 @@
                 <ul id="list-products"></ul>
             </article>
 
-            <article id="layout-favorites">
+            <article id="product-detail" class="scroll">
+                <img src="img/products/big.jpg" class="img-big"/>
+                <h1>Mini Tomate Chucha</h1>
+                <h3>Selecção</h3>
+                <p>emb. 250 gr (aprox.)</p>
+                <p><span class="brand-color">€ 20,19 /un</span></p>
+                <p>€ 5,96 /kg</p>
+                <div class="buttons">
+                    <a href="#" class="button anchor accept margin-bottom" data-icon="shopping-cart">Colocar no carrinho</a>
+                    <a href="#" class="button anchor accept margin-bottom" data-icon="list">Adicionar a lista</a>
+                    <a href="#" class="button anchor btn-favorite margin-bottom" data-icon="star">Marcar como favorito</a>
+                </div>
+                
+            </article>
+
+            <article id="favorites" class="list indenteds scroll">
+                <ul id="list-favorites">
+                    
+                </ul>
+                <!--
                 <div class="empty">
                     <span class="icon star"></span>
-                    <strong>No favorites</strong>
-                    <small>When you mark a product as a favorite it will show up here.</small>
+                    <strong>Sem favoritos</strong>
+                    <small>Quando marcar um produto como favorito ele irá aparecer aqui</small>
+                </div>
+            -->
+            </article>
+
+            <article id="add_list" class="list indenteds scroll">
+                <div class="form">
+                    <fieldset>
+                        <input type="text" id="list-name" class="text bold align_center" placeholder="nome da lista"/>
+                    </fieldset>
+                    <fieldset>
+                        <input type="text" onkeyup="fetchUsers(this)" id="user-input" class="text align_center" placeholder="adicionar utilizador"/>
+                    </fieldset>
+                    <ul id="matched-users">
+                        <li class="anchor contrast">Utilizadores sugeridos</li>
+                        <li>Miguel</li>
+                        <li>Rui</li>
+                        <li>David</li>
+                        <li class="anchor contrast">Utilizadores na lista</li>
+                        <li>Afonso</li>
+                        <a href="#" class="button anchor accept margin-bottom">Criar lista</a>
+                    </ul>
                 </div>
             </article>
 
-            <article id="layout-shopping-cart">
-                <div class="empty">
-                    <span class="icon shopping-cart"></span>
-                    <strong>Shopping Cart is Empty</strong>
-                    <small>When you add a product to your cart it will show up here.</small>
-                </div>
-            </article>
-
-            <article id="layout-lists" class="list indenteds scroll">
+            <article id="lists" class="list indenteds scroll">
                 <ul>
                     <li class="selectable arrow">
                         <a href="#">
@@ -102,9 +135,6 @@
                             <small>4 produtos</small>
                             <div class="on-right">Total: <span class="brand-color">20,75€</span></div>
                         </a>
-                        <div class="submenu">
-                            submenu here
-                        </div>
                     </li>
                     <li class="selectable arrow">
                         <a href="#">
@@ -127,22 +157,25 @@
     
             <footer>
                 <nav>
-                    <a href="#" data-view-article="main-article" data-icon="search"></a>
-                    <a href="#" data-view-article="store" data-icon="sitemap"></a>
-                    <a href="#" data-view-article="layout-favorites" data-icon="star"></a>
-                    <a href="#" data-view-article="layout-shopping-cart" data-icon="shopping-cart"></a>
-                    <a href="#" data-view-article="layout-lists" data-icon="list"></a>
+                    <a href="#" data-view-article="search" data-icon="search" data-title="Pesquisa"></a>
+                    <a href="#" data-view-article="store" data-icon="sitemap" data-title="Loja"></a>
+                    <a href="#" data-view-article="favorites" data-icon="star" data-title="Favoritos"></a>
+                    <a href="#" data-view-article="lists" data-icon="list" data-title="Listas"></a>
+                    <a href="#" data-view-article="options" data-icon="cog" data-title="Opções"></a>
                 </nav>
             </footer>
 
         </section>
-
           
-        <script id="tmpl-user" type="text/x-jquery-tmpl">
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">${name}</h4>
-            <p class="list-group-item-text">teste1</p>
-          </a>
+        <script id="tmpl-favorite" type="text/x-jquery-tmpl">
+            <li class="thumb arrow">
+                <img src="${img}" />
+                <div>
+                    <strong>${name}</strong>
+                    <small>${brand} - ${description}</small>
+                    <span class="text tiny opacity"><span class="brand-color">€ ${price} - </span>${alt_price} /lt</span>
+                </div>
+            </li>
         </script>
         
         

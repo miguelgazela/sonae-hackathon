@@ -2,6 +2,13 @@
   display: none;
 }
 
+body > section > article,
+body > section > [data-control="pull"],
+body > section > article a,
+body > section > [data-control="pull"] a {
+  color: #333;
+}
+
 body > section > header {
   background-color: #e00915;
   -webkit-box-shadow: none;
@@ -62,18 +69,18 @@ section > footer > nav > .current {
   color: #e74c3c;
 }
 
-section .list li {
+section .list {
   position: relative;
 }
 
 section .list li > .submenu {
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   height: 100%;
   width: 100%;
   z-index: 1;
-  background-color: black;
+  background-color: #fff;
 }
 
 section .list li.selectable:active {
@@ -97,8 +104,63 @@ section .list li.selectable:active .brand-color {
   color: #e74c3c;
 }
 
+#product-detail {
+  background-color: #fff;
+  text-align: center;
+}
+
+#product-detail > .buttons {
+  margin-top: 15px;
+}
+
+.img-big {
+  display: block;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.form input[type="text"]:focus {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+article button.btn-favorite,
+article .button.btn-favorite {
+  background-color: #f1c40f;
+}
+
+article button.btn-list,
+article .button.btn-list {
+  background-color: #e74c3c;
+}
 
 /* ANIMATIONS */
+
+.animate-fast {
+  -webkit-animation-timing-function: ease-in-out; 
+  -webkit-animation-duration: 300ms;
+}
+
+@-webkit-keyframes selected { 
+  from { background-color: #fff; } 
+  50% { background-color: #2ecc71; } 
+  to { background-color: #fff; } 
+}
+
+@-webkit-keyframes favorited { 
+  from { background-color: #fff; } 
+  50% { background-color: #f1c40f; } 
+  to { background-color: #fff; } 
+}
+
+.animate-fast.selected {
+  -webkit-animation-name: selected;
+}
+
+.animate-fast.favorited {
+  -webkit-animation-name: favorited;
+}
 
 .in, 
 .out { 
