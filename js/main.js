@@ -12,14 +12,13 @@ $(document).ready(function(){
 
 Lungo.dom('#product-detail').on('load', function(){
     // load product detail
-
 });
 
 Lungo.dom('#favorites').on('load', function(event){
     console.log("Loading favorites");
 
     //$.getJSON("http://localhost:8888/sonae-hackathon/tmp-data/favorites.json", function(data){
-    $.getJSON("http://172.30.16.53:8888/sonae-hackathon/tmp-data/favorites.json", function(data){
+    $.getJSON("http://172.30.17.248:8888/sonae-hackathon/tmp-data/favorites.json", function(data){
         $("#list-favorites").empty('li');
         $("#tmpl-favorite").tmpl(data.products).appendTo("#list-favorites");
 
@@ -50,6 +49,10 @@ Lungo.dom('#favorites').on('load', function(event){
         });
     });
 });
+
+function fetchUsers(input){
+    $('#list-name').val($(input).val());
+}
 
 function transition(toPage, type, reverse) {
     var toPage = $(toPage);
