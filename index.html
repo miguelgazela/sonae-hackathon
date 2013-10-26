@@ -61,21 +61,25 @@
                     
                 </div> -->
                 <div id="list-promos"class="horizontal scroll">
-	                <div id="scroller">
+	               <!-- <div id="scroller">
 						<div class="nav">
 					    	<a class="prev">&laquo;</a>
 							<a class="next">&raquo;</a>
 						</div>
-							<!-- <a class="item" href="#"><img src="img/promos/teste1.png width="500" height="128" /></a> -->
+							<a class="item" href="#"><img src="img/promos/teste1.png width="500" height="128" /></a>
 							<a class="item" href="#"><img src="http://i.imgur.com/79aU67L.jpg" width="128" height="128"/></a>
 							<a class="item" href="#"><img src="http://i.imgur.com/x3wSoFU.jpg" width="128" height="128"/></a>
 							<a class="item" href="#"><img src="http://i.imgur.com/27fTqbA.jpg" width="128" height="128"/></a>
 							<a class="item" href="#"><img src="http://i.imgur.com/RjdFV6n.jpg" width="128" height="128"/></a>
 							<a class="item" href="#"><img src="http://i.imgur.com/6W8JOza.jpg" width="128" height="128"/></a>
 							<a class="item" href="#"><img src="http://i.imgur.com/rwLY1JH.jpg" width="128" height="128"/></a>
-					</div>
+					</div>-->
                 </div>
-                <ul id="list-products"></ul>
+                <ul id="list-categories"></ul>
+            </article>
+            
+            <article id="products" class="list indenteds scroll">
+            	<ul id="list-products"></ul>
             </article>
 
             <article id="product-detail" class="scroll">
@@ -92,6 +96,8 @@
                 </div>
                 
             </article>
+            
+            
 
             <article id="favorites" class="list indenteds scroll">
                 <ul id="list-favorites">
@@ -186,13 +192,19 @@
         
         <script id="tmpl-store" type="text/x-jquery-tmpl">
 			<li class="thumb arrow">
-				<img src="${img}" />
-				<div>
-					<strong>${name}</strong>
-					<small>${brand} - ${description}</small>
-					<span class="text tiny opacity"><span class="brand-color">€ ${price} - </span>${alt_price} /lt</span>
-				</div>
+				<strong>${name}</strong>
 			</li>
+		</script>
+		
+		<script id="tmpl-products" type="text/x-jquery-tmpl">
+			<li class="thumb arrow">
+                <img src="${img}" />
+                <div>
+                    <strong>${name}</strong>
+                    <small>${brand} - ${description}</small>
+                    <span class="text tiny opacity"><span class="brand-color">€ ${price} - </span>${alt_price} /lt</span>
+                </div>
+            </li>
 		</script>
 		
         <script src="js/vendor/quo.js"></script>

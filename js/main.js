@@ -22,12 +22,46 @@ Lungo.dom('#product-detail').on('load', function(){
     // load product detail
 });
 
+Lungo.dom('#products').on('load', function(){
+    $.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
+
+		//$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+
+
+		$("#list-products").empty('li');
+		$("#tmpl-products").tmpl(data.products).appendTo("#list-products");
+
+		$$("#list-products > li").doubleTap(function(){
+			var object = $(this);
+			// add to cart
+
+			object.addClass('animate-fast selected').one("webkitAnimationEnd", function(){
+				object.removeClass("animate-fast selected");
+			});
+		});
+
+		$$("#list-products > li").hold(function(){ // this cannot be done in favorites
+			var object = $(this);
+
+			// mark as favorite
+			object.addClass('animate-fast favorited').one("webkitAnimationEnd", function(){
+				object.removeClass("animate-fast favorited");
+			});
+		});
+
+		$$("#list-products > li").singleTap(function(){
+			var object = $(this);
+			Lungo.Router.article("main", "products");
+		});
+	});
+});
+
 Lungo.dom('#favorites').on('load', function(event){
     console.log("Loading favorites");
 
     $.getJSON(BASE_PATH+"api/favorites/get.php?iduser=1", function(data){
         console.log("favorites_received");
-
+        
         $("#list-favorites").empty('li');
         $("#tmpl-favorite").tmpl(data).appendTo("#list-favorites");
 
@@ -83,49 +117,25 @@ function transition(toPage, type, reverse) {
     fromPage.addClass(type + " out " + reverse);
 }
 
-/*$.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
-$("#list-products").empty('li');
-$("#tmpl-store").tmpl(data.products).appendTo("#list-products");
-});*/
-
 
 Lungo.dom('#store').on('load', function(event){
-console.log("Loading store");
+	console.log("Loading store");
 
-//$.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
+	$.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
 
-$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
-$("#list-products").empty('li');
-$("#tmpl-store").tmpl(data.products).appendTo("#list-products");
+	//$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
 
-$$("#list-products > li").doubleTap(function(){
-var object = $(this);
-// add to cart
 
-object.addClass('animate-fast selected').one("webkitAnimationEnd", function(){
-object.removeClass("animate-fast selected");
+		$("#list-categories").empty('li');
+		$("#tmpl-store").tmpl(data.categories).appendTo("#list-categories");
+
+
+		$$("#list-categories > li").singleTap(function(){
+			var object = $(this);
+			Lungo.Router.article("main", "products");
+		});
+	});
 });
-});
-
-$$("#list-products > li").hold(function(){ // this cannot be done in favorites
-var object = $(this);
-
-// mark as favorite
-object.addClass('animate-fast favorited').one("webkitAnimationEnd", function(){
-object.removeClass("animate-fast favorited");
-});
-});
-
-$$("#list-products > li").singleTap(function(){
-var object = $(this);
-
-$('#product-detail').attr('data-product-id', 1);
-Lungo.Router.article("main", "product-detail");
-});
-});
-});
-
-
 
 
 /* Create an array to hold the different image positions */
