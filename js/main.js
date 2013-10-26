@@ -1,5 +1,5 @@
-var BASE_PATH = "http://172.30.17.248:8888/sonae-hackathon/";
-var BASE_PATH2 = "http://localhost:8888/sonae-hackathon/";
+var BASE_PATH2 = "http://172.30.17.248:8888/sonae-hackathon/";
+var BASE_PATH = "http://localhost:8888/sonae-hackathon/";
 var searchTags = [];
 
 $(document).ready(function(){
@@ -181,40 +181,9 @@ $.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
         $("#tmpl-checkout").tmpl(data.products).appendTo("#show-checkout");
 });*/
 
-
-Lungo.dom('#features').on('load', function(event){
-    console.log("Loading shopping-cart");
-    alert("easdas");
-    
-    //$.getJSON("tmp-data/favorites.json"", function(data){
-    $.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
-        $("#list-cart-products").empty('li');
-        $("#tmpl-cart-product").tmpl(data.products).appendTo("#list-cart-products");
-    });
-});
-
 function fetchUsers(input){
     $('#list-name').val($(input).val());
 }
-
-Lungo.dom('#store').on('load', function(event){
-	console.log("Loading store");
-
-	//$.getJSON("tmp-data/favorites.json"", function(data){
-
-	$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
-
-
-		$("#list-categories").empty('li');
-		$("#tmpl-store").tmpl(data.categories).appendTo("#list-categories");
-
-
-		$$("#list-categories > li").singleTap(function(){
-			var object = $(this);
-			Lungo.Router.article("main", "products");
-		});
-	});
-});
 
 /* Create an array to hold the different image positions */
 var itemPositions = [];
@@ -297,7 +266,7 @@ function init() {
 
     $('.search-results').hide();
     $('body').on('touchmove',function(e){
-        e.preventDefault();
+        //e.preventDefault();
     });
 
     $('.scroll').bind('touchmove', function(e){
@@ -327,7 +296,7 @@ function saveTag(string, count) {
     var tag = string.trim().split(' ').pop();
 
     $.ajax({
-        url: '../database/update_tag.php',
+        url: BASE_PATH+'database/update_tag.php',
         type: 'POST',
         data: { tag_text : tag, count_number : count },
         success: function(){
@@ -338,7 +307,7 @@ function saveTag(string, count) {
 
 function loadSearchTags() {
     $.ajax({
-        url: '../database/get_search_tags.php',
+        url: BASE_PATH+'database/get_search_tags.php',
         type: 'POST',
         dataType: 'json',
         success: function(data){
@@ -362,7 +331,7 @@ function searchTrigger() {
         }
         if (event.keyCode == 32 || event.keyCode == 13) {
             $.ajax({
-                url: '../database/search.php',
+                url: BASE_PATH+'database/search.php',
                 type: 'POST',
                 data: { search : value },
                 dataType: 'json',

@@ -1,7 +1,6 @@
 <?php    
     include_once('../../common/init.php');
-    include_once($BASE_PATH.'database/listas.php');
-
+    
     header('Content-Type: application/json');
 
     if(!isset($_GET['iduser'])) {
