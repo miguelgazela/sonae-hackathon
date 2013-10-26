@@ -15,9 +15,9 @@ Lungo.dom('#product-detail').on('load', function(){
 });
 
 Lungo.dom('#products').on('load', function(){
-    $.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
+   // $.getJSON("tmp-data/favorites.json", function(data){
 
-		//$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+		$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
 
 
 		$("#list-products").empty('li');
@@ -51,8 +51,8 @@ Lungo.dom('#products').on('load', function(){
 Lungo.dom('#favorites').on('load', function(event){
     console.log("Loading favorites");
     
-    $.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
-    //$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+    //$.getJSON("tmp-data/favorites.json"", function(data){
+    $.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
         $("#list-favorites").empty('li');
         $("#tmpl-favorite").tmpl(data.products).appendTo("#list-favorites");
 
@@ -84,6 +84,31 @@ Lungo.dom('#favorites').on('load', function(event){
     });
 });
 
+/*$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+        $("#list-cart-products").empty('li');
+        $("#tmpl-cart-product").tmpl(data.products).appendTo("#list-cart-products");
+});
+    
+$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+        $("#show-checkout").empty('li');
+        $("#tmpl-checkout").tmpl(data.products).appendTo("#show-checkout");
+});*/
+
+
+Lungo.dom('#features').on('load', function(event){
+    console.log("Loading shopping-cart");
+    alert("easdas");
+    
+    //$.getJSON("tmp-data/favorites.json"", function(data){
+    $.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+        $("#list-cart-products").empty('li');
+        $("#tmpl-cart-product").tmpl(data.products).appendTo("#list-cart-products");
+    });
+});
+
+
+
+
 function fetchUsers(input){
     $('#list-name').val($(input).val());
 }
@@ -112,9 +137,9 @@ function transition(toPage, type, reverse) {
 Lungo.dom('#store').on('load', function(event){
 	console.log("Loading store");
 
-	$.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
+	//$.getJSON("tmp-data/favorites.json"", function(data){
 
-	//$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+	$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
 
 
 		$("#list-categories").empty('li');
