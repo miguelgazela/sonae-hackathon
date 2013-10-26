@@ -1,5 +1,5 @@
-var BASE_PATH2 = "http://172.30.17.248:8888/sonae-hackathon/";
-var BASE_PATH = "http://localhost:8888/sonae-hackathon/";
+var BASE_PATH = "http://172.30.17.248:8888/sonae-hackathon/";
+var BASE_PATH2 = "http://localhost:8888/sonae-hackathon/";
 var searchTags = [];
 
 $(document).ready(function(){
