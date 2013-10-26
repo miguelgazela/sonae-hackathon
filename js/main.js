@@ -1,5 +1,5 @@
-var BASE_PATH = "http://172.30.17.248:8888/sonae-hackathon/";
-var BASE_PATH2 = "http://localhost:8888/sonae-hackathon/";
+var BASE_PATH2 = "http://172.30.17.248:8888/sonae-hackathon/";
+var BASE_PATH = "http://localhost:8888/sonae-hackathon/";
 
 $(document).ready(function(){
     console.log("jQuery working!");
@@ -29,6 +29,7 @@ Lungo.dom('#store').on('load', function(event){
         $$("#list-categories > li").singleTap(function(){
             var object = $(this);
             $('#products').attr('data-category-id', object.attr('data-category-id'));
+            $('#products').attr('data-category-name', object.children('strong').text());
             Lungo.Router.article("main", "products");
         });
     });
@@ -37,6 +38,8 @@ Lungo.dom('#store').on('load', function(event){
 Lungo.dom('#products').on('load', function(){
     console.log("loading products");
     $("#list-products").html("");
+    $("h1.title").text($("#products").attr("data-category-name"));
+    $("footer nav a.link_store").addClass("active");
 
     $.getJSON(BASE_PATH+"api/products/get_by_category.php?idcategoria="+$('#products').attr('data-category-id'), function(data){
 
@@ -44,7 +47,9 @@ Lungo.dom('#products').on('load', function(){
 
 		$$("#list-products > li").doubleTap(function(){
 			var object = $(this);
+
 			// add to cart
+            $.get(BASE_PATH+"api/carrinho/add.php?iduser=1&idproduto="+object.attr("data-product-id")+"&quantidade=1");
 
 			object.addClass('animate-fast selected').one("webkitAnimationEnd", function(){
 				object.removeClass("animate-fast selected");
@@ -55,6 +60,8 @@ Lungo.dom('#products').on('load', function(){
 			var object = $(this);
 
 			// mark as favorite
+            $.get(BASE_PATH+"api/favorites/add.php?iduser=1&idproduto="+object.attr("data-product-id"));
+
 			object.addClass('animate-fast favorited').one("webkitAnimationEnd", function(){
 				object.removeClass("animate-fast favorited");
 			});
@@ -62,6 +69,7 @@ Lungo.dom('#products').on('load', function(){
 
 		$$("#list-products > li").singleTap(function(){
             var object = $(this);
+            $('#product-detail').attr('data-go-back', "products");
             $('#product-detail').attr('data-product-id', object.attr('data-product-id'));
             Lungo.Router.article("main", "product-detail");
         });
@@ -93,24 +101,17 @@ Lungo.dom('#favorites').on('load', function(event){
             var object = $(this);
 
             // add to cart
+            $.get(BASE_PATH+"api/carrinho/add.php?iduser=1&idproduto="+object.attr("data-product-id")+"&quantidade=1");
 
             object.addClass('animate-fast selected').one("webkitAnimationEnd", function(){
                 object.removeClass("animate-fast selected");
             });
         });
 
-        $$("#list-favorites > li").hold(function(){ // this cannot be done in favorites
-            var object = $(this);
-
-            // mark as favorite
-            object.addClass('animate-fast favorited').one("webkitAnimationEnd", function(){
-                object.removeClass("animate-fast favorited");
-            });
-        });
-
         $$("#list-favorites > li").singleTap(function(){
             var object = $(this);
             $('#product-detail').attr('data-product-id', object.attr('data-product-id'));
+            $('#product-detail').attr('data-go-back', "favorites");
             Lungo.Router.article("main", "product-detail");
         });
     });
@@ -118,6 +119,8 @@ Lungo.dom('#favorites').on('load', function(event){
 
 Lungo.dom('#product-detail').on('load', function(){
     $("#product-detail").html("");
+    $("nav a.back").attr("data-view-article", $("#product-detail").attr("data-go-back"));
+
     $.getJSON(BASE_PATH+"api/products/get.php?idproduto="+$('#product-detail').attr('data-product-id'), function(data){
         $("#tmpl-product-detail").tmpl(data).appendTo("#product-detail");
     });
@@ -179,9 +182,10 @@ function scroll(direction) {
     } else if (direction === 'next') {
         itemPositions.unshift(itemPositions.pop());
     }
+
     $('#scroller .item').removeClass('left-hidden left middle right right-hidden').each(function(index) {
         $(this).addClass(itemPositions[index]);
-    });        
+    });
 }
 
 

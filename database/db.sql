@@ -1,74 +1,74 @@
-﻿CREATE TABLE users (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	name TEXT,
-	password TEXT
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    password TEXT
 );
 
 CREATE TABLE produtos (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	idCategoria INTEGER,
-	name TEXT,
-	marca TEXT,
-	descricao TEXT,
-	preco TEXT,
-	precoAlternativo TEXT,
-	imagemSmall TEXT,
-	imagemLarge TEXT,
-	FOREIGN KEY(idCategoria) REFERENCES categoria(idCategoria) ON DELETE CASCADE
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    idCategoria INTEGER,
+    name TEXT,
+    marca TEXT,
+    descricao TEXT,
+    preco TEXT,
+    precoAlternativo TEXT,
+    imagemSmall TEXT,
+    imagemLarge TEXT,
+    FOREIGN KEY(idCategoria) REFERENCES categoria(idCategoria) ON DELETE CASCADE
 );
 
 CREATE TABLE categoria (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	nome TEXT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT
 );
 
 CREATE TABLE produtosComprados (
-	idUser INTEGER,
-	idProduto INTEGER,
-	PRIMARY KEY (idUser, idProduto),
-	FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
-	FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
+    idUser INTEGER,
+    idProduto INTEGER,
+    PRIMARY KEY (idUser, idProduto),
+    FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE produtosFavoritos (
-	idUser INTEGER,
-	idProduto INTEGER,
-	PRIMARY KEY (idUser, idProduto),
-	FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
-	FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
+    idUser INTEGER,
+    idProduto INTEGER,
+    PRIMARY KEY (idUser, idProduto),
+    FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE listas (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
-	name TEXT,
-	idResponsavel INTEGER,
-	FOREIGN KEY(idResponsavel) REFERENCES users(id) ON DELETE CASCADE
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    idResponsavel INTEGER,
+    FOREIGN KEY(idResponsavel) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE listasUsers (
-	idLista INTEGER,
-	idUser INTEGER,
-	PRIMARY KEY (idLista, idUser),
-	FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
-	FOREIGN KEY(idLista) REFERENCES listas(id) ON DELETE CASCADE
+    idLista INTEGER,
+    idUser INTEGER,
+    PRIMARY KEY (idLista, idUser),
+    FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY(idLista) REFERENCES listas(id) ON DELETE CASCADE
 );
 
 CREATE TABLE listasProdutos (
-	idLista INTEGER,
-	idProduto INTEGER,
-	quantidade INTEGER,
-	PRIMARY KEY(idLista, idProduto),
-	FOREIGN KEY(idLista) REFERENCES listas(id) ON DELETE CASCADE,
-	FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
+    idLista INTEGER,
+    idProduto INTEGER,
+    quantidade INTEGER,
+    PRIMARY KEY(idLista, idProduto),
+    FOREIGN KEY(idLista) REFERENCES listas(id) ON DELETE CASCADE,
+    FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
 CREATE TABLE produtosCarrinho (
-	idUser INTEGER,
-	idProduto INTEGER,
-	quantidade INTEGER,
-	PRIMARY KEY(idUser, idProduto),
-	FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
-	FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
+    idUser INTEGER,
+    idProduto INTEGER,
+    quantidade INTEGER,
+    PRIMARY KEY(idUser, idProduto),
+    FOREIGN KEY(idUser) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
 insert into users values(null, "Miguel", "password");
@@ -91,8 +91,8 @@ insert into categoria values(null, "Casa");
 insert into categoria values(null, "Animais");
 insert into categoria values(null, "Lazer");
 
-insert into produtos values(null, 1, "Pêssego em Calda", "Globo", "emb. 820 gr", "2,79 /un", "11,16 /kg", "img/small/1.jpeg", "img/large/1.jpeg");
-insert into produtos values(null, 1, "Pudim de Caramelo", "Continente", "emb. 90 gr", "0,34 /un", "3,78 /kg", "img/small/2.jpeg", "img/large/2.jpeg");
+insert into produtos values(null, 1, "Pêssego em Calda", "Globo", "emb. 820 gr", "2,79 /un", "11,16 /kg", "img/small/1.jpg", "img/large/1.jpg");
+insert into produtos values(null, 1, "Pudim de Caramelo", "Continente", "emb. 90 gr", "0,34 /un", "3,78 /kg", "img/small/2.jpg", "img/large/2.jpg");
 insert into produtos values(null, 1, "Feijão Frade","Continente","emb. 830 gr","0,89 /un","1,07/ kg","img/small/3.jpg", "img/large/3.jpg");
 insert into produtos values(null, 2, "Vodka","Moskovskaya","garrafa 70 cl","10,79 /un","15,41/ lt","img/small/4.jpg", "img/large/4.jpg");
 insert into produtos values(null, 2, "Água sem Gás","Continente","emb. 6 x 33 cl","0,60 /un","0,30/ lt","img/small/5.jpg", "img/large/5.jpg");
@@ -140,3 +140,4 @@ insert into listasUsers values(2, 1);
 
 
 
+ 

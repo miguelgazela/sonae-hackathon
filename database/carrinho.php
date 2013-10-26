@@ -3,13 +3,8 @@ include_once('../../common/init.php');
 
 function addCarrinho($iduser, $idproduto,$quantidade) {
     global $db;
-
-    $insert = "INSERT INTO produtosCarrinho VALUES ('$iduser','$idproduto','$quantidade')";
-    if(($query = $db->query($insert))) {
-        return "SUCCESS";
-    } else {
-        return "QUERY_ERROR";
-    }
+    $result = $db->prepare("INSERT INTO produtosCarrinho VALUES (?, ?, ?)");
+    $result->execute(array($iduser, $idproduto, $quantidade));
 }
 
 function getCarrinho($iduser) {
@@ -33,18 +28,21 @@ function removeCarrinho($iduser,$idproduto) {
     }
 }
 
+/*
 function clearCarrinho($iduser){
 	global $db;
 
 	$delete = "DELETE * FROM produtosCarrinho WHERE idUser = '$iduser'"
 
-	if(($return = $db->exec($delete))) {
+	if($return = $db->exec($delete))) {
         return "SUCCESS";
     } else {
         return "QUERY_ERROR";
     }
 }
+*/
 
+/*
 function setCarrinhoQuantity($iduser, $idproduto){
 	global $db;
 
@@ -56,5 +54,6 @@ function setCarrinhoQuantity($iduser, $idproduto){
         return "QUERY_ERROR";
     }
 }
+*/
 
 ?>

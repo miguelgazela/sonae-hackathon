@@ -1,5 +1,6 @@
 <?php
 include_once('../../common/init.php');
+
 function createLista($name,$iduser) {
     global $db;
 
@@ -78,15 +79,20 @@ function getProdutos($idlista) {
     return $result->fetchAll();
 }
 
+function getNumMembers($id){
+    global $db;
+    $result = $db->prepare("SELECT count(idUser) FROM listasUsers WHERE idLista = ?");
+    $result->execute(array($id));
+    return $result->fetch();
+}
+
 function getListas($iduser) {
     global $db;
-
-    $query = "SELECT * FROM listasUsers WHERE idUser='$iduser'";
-
-    $result = $db->query($query);
-
+    $result = $db->prepare("SELECT listas.* FROM listasUsers, listas WHERE listas.id = listasUsers.idLista AND listasUsers = ?");
+    $result->execute(array($iduser));
     return $result->fetchAll();
 }
+
 function getListasResponsavel($iduser) {
     global $db;
 
@@ -95,6 +101,5 @@ function getListasResponsavel($iduser) {
     $result = $db->query($query);
 
     return $result->fetchAll();
-}
 }
 ?>

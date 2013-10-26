@@ -1,13 +1,9 @@
 <?php
     function add($iduser,$idproduto) {
-        global $db;
 
-        $insert = "INSERT INTO produtosFavoritos VALUES ('$iduser','$idproduto')";
-        if(($query = $db->query($insert))) {
-            return "SUCCESS";
-        } else {
-            return "QUERY_ERROR";
-        }
+        global $db;
+        $result = $db->prepare("INSERT INTO produtosFavoritos VALUES (?,?)");
+        $result->execute(array($iduser, $idproduto));
     }
 
 function remove($iduser,$idproduto) {
@@ -18,7 +14,7 @@ function remove($iduser,$idproduto) {
 
 function get($iduser){
     global $db;
-    $result = $db->prepare("SELECT produtos.* from produtos, produtosFavoritos WHERE produtos.id = produtosFavoritos.idProduto AND produtosFavoritos.idUser = ?");
+    $result = $db->prepare("SELECT produtos.* from produtos, produtosFavoritos WHERE produtos.id = produtosFavoritos.idProduto AND produtosFavoritos.idUser = ? ORDER BY produtos.name ASC");
     $result->execute(array($iduser));
     return $result->fetchAll();
 }
