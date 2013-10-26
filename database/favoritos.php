@@ -12,21 +12,14 @@
 
 function remove($iduser,$idproduto) {
     global $db;
-
-    $delete = "DELETE FROM produtosFavoritos WHERE idUser='$iduser' AND idUser='$iduser' ";
-
-    if(($return = $db->exec($delete))) {
-        return "SUCCESS";
-    } else {
-        return "QUERY_ERROR";
-    }
+    $result = $db->prepare("DELETE FROM produtosFavoritos WHERE idUser = ? AND idProduto = ?");
+    $result->execute(array($iduser, $idProduto));
 }
 
 function get($iduser){
     global $db;
-
-    $query = "SELECT * FROM produtosFavoritos WHERE idUser='$iduser'";
-
-    return $db->query($query);
+    $result = $db->prepare("SELECT produtos.* from produtos, produtosFavoritos WHERE produtos.id = produtosFavoritos.idProduto AND produtosFavoritos.idUser = ?");
+    $result->execute(array($iduser));
+    return $result->fetchAll();
 }
 ?>

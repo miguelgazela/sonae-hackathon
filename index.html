@@ -168,12 +168,12 @@
         </section>
           
         <script id="tmpl-favorite" type="text/x-jquery-tmpl">
-            <li class="thumb arrow">
-                <img src="${img}" />
+            <li class="thumb arrow favorite" data-product-id="${id}">
+                <img src="${imagemSmall}" />
                 <div>
                     <strong>${name}</strong>
-                    <small>${brand} - ${description}</small>
-                    <span class="text tiny opacity"><span class="brand-color">€ ${price} - </span>${alt_price} /lt</span>
+                    <small>${marca} - ${descricao}</small>
+                    <span class="text tiny opacity"><span class="brand-color">€ ${preco} - </span>${precoAlternativo}</span>
                 </div>
             </li>
         </script>

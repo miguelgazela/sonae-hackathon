@@ -125,6 +125,11 @@ insert into produtos values(null, 11, "Rato Óptico sem Fio", "Kunft", "1 un", "
 insert into produtos values(null, 11, "Corrector Frasco", "Note.It", "2 un", "1,69/un", "1,69/un", "img/small/32.jpeg", "img/large/32.jpeg");
 insert into produtos values(null, 11, "Pins Coloridos", "Continente", "60 un", "1,79 /un", "1,79 /un", "img/small/33.jpeg", "img/large/33.jpeg");
 
+insert into produtosFavoritos values(1, 1);
+insert into produtosFavoritos values(1, 2);
+insert into produtosFavoritos values(1, 3);
+insert into produtosFavoritos values(1, 8);
+
 insert into listas values(null, "Hachathon Sonae", 1);
 insert into listas values(null, "Aniversário", 3);
 
