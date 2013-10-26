@@ -1,6 +1,4 @@
-<?php
-    header('Content-Type: application/json');
-    
+<?php 
     include_once('../../common/init.php');
     include_once('../../database/users.php');
 
@@ -11,5 +9,5 @@
             return "Error! Password not set";
         }
 
-    var_dump(addUser($_GET['name'],$_GET['password']));
+    return json_encode(addUser($_GET['name'],$_GET['password']));
 ?>

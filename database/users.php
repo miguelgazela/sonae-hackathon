@@ -10,4 +10,13 @@
             return "QUERY_ERROR";
         }
     }
+
+function get(){
+    global $db;
+
+    $query = "SELECT * FROM users";
+	
+    $result = $db->query($query);
+    return $result->fetchAll();
+}
 ?>

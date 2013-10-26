@@ -72,8 +72,10 @@ function getProdutos($idlista) {
     global $db;
 
     $query = "SELECT * FROM listasProdutos WHERE idLista='$idlista'";
+	
+    $result = $db->query($query);
 
-    return $db->query($query);
+    return $result->fetchAll();
 }
 
 function getListas($iduser) {
@@ -81,14 +83,18 @@ function getListas($iduser) {
 
     $query = "SELECT * FROM listasUsers WHERE idUser='$iduser'";
 
-    return $db->query($query);
-}
+    $result = $db->query($query);
 
+    return $result->fetchAll();
+}
 function getListasResponsavel($iduser) {
     global $db;
 
     $query = "SELECT * FROM listas WHERE idresponsavel='$iduser'";
 
-    return $db->query($query);
+    $result = $db->query($query);
+
+    return $result->fetchAll();
+}
 }
 ?>
