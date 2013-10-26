@@ -51,5 +51,20 @@
         { "name": "Toalhitas para BebÈ Rosto", "brand": "Corine de Farme", "description": "emb. 25 un", "price":"2,09", "img": "img/test.jpeg"},
         { "name": "Escova de Dentes Extra Clean MÈdia", "brand": "Colgate", "description": "2 un.", "price":"1,99", "img": "img/test.jpeg"},
         { "name": "Detergente Manual LoiÁa Regular", "brand": "Fairy", "description": "emb. 1015 ml ", "price":"3,39", "img": "img/test.jpeg"}
+    ],
+    
+    "categories": [
+    	{"name":"Mercearia"},
+    	{"name":"Bebidas"},
+    	{"name":"Frescos"},
+    	{"name":"Laticínios"},
+    	{"name":"Congelados"},
+    	{"name":"Bebé"},
+    	{"name":"Higiene"},
+    	{"name":"Limpeza"},
+    	{"name":"Casa"},
+    	{"name":"Animais"},
+    	{"name":"Lazer"}
     ]
+    
 }
