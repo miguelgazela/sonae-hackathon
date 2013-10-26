@@ -2,6 +2,13 @@
   display: none;
 }
 
+body > section > article,
+body > section > [data-control="pull"],
+body > section > article a,
+body > section > [data-control="pull"] a {
+  color: #333;
+}
+
 body > section > header {
   background-color: #e74c3c;
   -webkit-box-shadow: none;
@@ -99,17 +106,28 @@ section .list li.selectable:active .brand-color {
 
 #product-detail {
   background-color: #fff;
+  text-align: center;
+}
+
+#product-detail > .buttons {
+  margin-top: 15px;
 }
 
 .img-big {
   display: block;
   margin: auto;
-  padding-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
-.articles {
-  height: 100%;
-  position: relative;
+article button.btn-favorite,
+article .button.btn-favorite {
+  background-color: #f1c40f;
+}
+
+article button.btn-list,
+article .button.btn-list {
+  background-color: #e74c3c;
 }
 
 /* ANIMATIONS */

@@ -12,6 +12,7 @@ $(document).ready(function(){
 
 Lungo.dom('#product-detail').on('load', function(){
     // load product detail
+
 });
 
 Lungo.dom('#favorites').on('load', function(event){
@@ -43,8 +44,6 @@ Lungo.dom('#favorites').on('load', function(event){
 
         $$("#list-favorites > li").singleTap(function(){
             var object = $(this);
-
-            // go to detail product
 
             $('#product-detail').attr('data-product-id', 1);
             Lungo.Router.article("main", "product-detail");
