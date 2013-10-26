@@ -18,18 +18,29 @@ $(document).ready(function(){
     });
 });
 
-Lungo.dom('#product-detail').on('load', function(){
-    // load product detail
+Lungo.dom('#store').on('load', function(event){
+    console.log("Loading store");
+    $("#list-categories").html("");
+
+    $.getJSON(BASE_PATH+"api/categories/get_all.php", function(data){
+
+        $("#tmpl-list-categories").tmpl(data).appendTo("#list-categories");
+
+        $$("#list-categories > li").singleTap(function(){
+            var object = $(this);
+            $('#products').attr('data-category-id', object.attr('data-category-id'));
+            Lungo.Router.article("main", "products");
+        });
+    });
 });
 
 Lungo.dom('#products').on('load', function(){
-    $.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
+    console.log("loading products");
+    $("#list-products").html("");
 
-		//$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+    $.getJSON(BASE_PATH+"api/products/get_by_category.php?idcategoria="+$('#products').attr('data-category-id'), function(data){
 
-
-		$("#list-products").empty('li');
-		$("#tmpl-products").tmpl(data.products).appendTo("#list-products");
+		$("#tmpl-product").tmpl(data).appendTo("#list-products");
 
 		$$("#list-products > li").doubleTap(function(){
 			var object = $(this);
@@ -50,19 +61,32 @@ Lungo.dom('#products').on('load', function(){
 		});
 
 		$$("#list-products > li").singleTap(function(){
-			var object = $(this);
-			Lungo.Router.article("main", "products");
-		});
+            var object = $(this);
+            $('#product-detail').attr('data-product-id', object.attr('data-product-id'));
+            Lungo.Router.article("main", "product-detail");
+        });
 	});
 });
 
+function emptyFavorites(){
+    if($("#list-favorites > li").length === 0) {
+        $("#favorites").append('<div class="empty"><span class="icon star"></span><strong>Sem favoritos</strong><small>Quando marcar um produto como favorito ele irá aparecer aqui</small></div>');
+    } else {
+        return false;
+    }
+}
+
+function addToCart(productId, userId){
+
+}
+
 Lungo.dom('#favorites').on('load', function(event){
     console.log("Loading favorites");
+    $("#list-favorites").html("");
 
     $.getJSON(BASE_PATH+"api/favorites/get.php?iduser=1", function(data){
         console.log("favorites_received");
-        
-        $("#list-favorites").empty('li');
+
         $("#tmpl-favorite").tmpl(data).appendTo("#list-favorites");
 
         $$("#list-favorites > li").doubleTap(function(){
@@ -86,10 +110,16 @@ Lungo.dom('#favorites').on('load', function(event){
 
         $$("#list-favorites > li").singleTap(function(){
             var object = $(this);
-
-            $('#product-detail').attr('data-product-id', 1);
+            $('#product-detail').attr('data-product-id', object.attr('data-product-id'));
             Lungo.Router.article("main", "product-detail");
         });
+    });
+});
+
+Lungo.dom('#product-detail').on('load', function(){
+    $("#product-detail").html("");
+    $.getJSON(BASE_PATH+"api/products/get.php?idproduto="+$('#product-detail').attr('data-product-id'), function(data){
+        $("#tmpl-product-detail").tmpl(data).appendTo("#product-detail");
     });
 });
 
@@ -116,27 +146,6 @@ function transition(toPage, type, reverse) {
     
     fromPage.addClass(type + " out " + reverse);
 }
-
-
-Lungo.dom('#store').on('load', function(event){
-	console.log("Loading store");
-
-	$.getJSON("http://localhost:8888/tmp-data/favorites.json", function(data){
-
-	//$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
-
-
-		$("#list-categories").empty('li');
-		$("#tmpl-store").tmpl(data.categories).appendTo("#list-categories");
-
-
-		$$("#list-categories > li").singleTap(function(){
-			var object = $(this);
-			Lungo.Router.article("main", "products");
-		});
-	});
-});
-
 
 /* Create an array to hold the different image positions */
 var itemPositions = [];
@@ -175,15 +184,13 @@ function scroll(direction) {
     });        
 }
 
-/* Do all this when the DOMs ready */
+
+/* Do all this when the DOMs ready
 $(document).ready(function() {
-
-
 
     assignPositions();
     var autoScroll = window.setInterval("scroll('next')", 3000);
   
-    /* Hover behaviours */
     $('#scroller').hover(function() {
         window.clearInterval(autoScroll);
         $('.nav').stop(true, true).fadeIn(200);
@@ -192,7 +199,6 @@ $(document).ready(function() {
         $('.nav').stop(true, true).fadeOut(200);
     });
 
-    /* Click behaviours */
     $('.prev').click(function() {
         scroll('prev');
     });
@@ -206,9 +212,8 @@ $(document).ready(function() {
     $('.next').click(function() {
         scroll('next');
     });
-
-
 });
+*/
 
 
 

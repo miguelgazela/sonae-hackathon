@@ -36,6 +36,7 @@
                 <nav>
                     <a href="#" data-view-aside="features" data-article="search" data-icon="shopping-cart"></a>
                     <a href="#" data-view-aside="features" data-article="favorites" data-icon="shopping-cart"></a>
+                    <a href="#" data-view-aside="features" data-article="store" data-icon="shopping-cart"></a>
                     <a href="#" class="back" data-icon="chevron-left" data-article="product-detail" data-view-article="favorites"></a>
                 </nav>
                 <nav class="on-right">
@@ -52,7 +53,7 @@
                 </div>
             </article>
 
-            <article id="store" class="list indenteds scroll">
+            <article id="store" class="list indented scroll">
                 <!-- <div class="empty">
                     <span class="icon sitemap"></span>
                     <strong>Store</strong>
@@ -78,38 +79,15 @@
                 <ul id="list-categories"></ul>
             </article>
             
-            <article id="products" class="list indenteds scroll">
+            <article id="products" class="list scroll">
             	<ul id="list-products"></ul>
             </article>
 
-            <article id="product-detail" class="scroll">
-                <img src="img/products/big.jpg" class="img-big"/>
-                <h1>Mini Tomate Chucha</h1>
-                <h3>Selecção</h3>
-                <p>emb. 250 gr (aprox.)</p>
-                <p><span class="brand-color">€ 20,19 /un</span></p>
-                <p>€ 5,96 /kg</p>
-                <div class="buttons">
-                    <a href="#" class="button anchor accept margin-bottom" data-icon="shopping-cart">Colocar no carrinho</a>
-                    <a href="#" class="button anchor accept margin-bottom" data-icon="list">Adicionar a lista</a>
-                    <a href="#" class="button anchor btn-favorite margin-bottom" data-icon="star">Marcar como favorito</a>
-                </div>
-                
-            </article>
-            
+            <article id="product-detail" class="scroll"></article>
             
 
             <article id="favorites" class="list indenteds scroll">
-                <ul id="list-favorites">
-                    
-                </ul>
-                <!--
-                <div class="empty">
-                    <span class="icon star"></span>
-                    <strong>Sem favoritos</strong>
-                    <small>Quando marcar um produto como favorito ele irá aparecer aqui</small>
-                </div>
-            -->
+                <ul id="list-favorites"></ul>
             </article>
 
             <article id="add_list" class="list indenteds scroll">
@@ -172,6 +150,26 @@
             </footer>
 
         </section>
+
+        <script id="tmpl-list-categories" type="text/x-jquery-tmpl">
+            <li class="arrow" data-category-id="${id}">
+                <strong>${nome}</strong>
+            </li>
+        </script>
+
+        <script id="tmpl-product-detail" type="text/x-jquery-tmpl">
+            <img src="${imagemLarge}" class="img-big"/>
+            <h1>${name}</h1>
+            <h3>${marca}</h3>
+            <p>${descricao}</p>
+            <p><span class="brand-color">€ ${preco}</span></p>
+            <p>€ ${precoAlternativo}</p>
+            <div class="buttons">
+                <a href="#" class="button anchor accept margin-bottom" data-icon="shopping-cart">Colocar no carrinho</a>
+                <a href="#" class="button anchor accept margin-bottom" data-icon="list">Adicionar a lista</a>
+                <a href="#" class="button anchor btn-favorite margin-bottom" data-icon="star">Marcar como favorito</a>
+            </div>
+        </script>
           
         <script id="tmpl-favorite" type="text/x-jquery-tmpl">
             <li class="thumb arrow favorite" data-product-id="${id}">
@@ -184,25 +182,17 @@
             </li>
         </script>
         
-        
        <script id="tmpl-promo" type="text/x-jquery-tmpl">
        <!--	<a class="item" href="#"><img src=${img} width="500" height="200" /></a>-->
        </script>
-       
-        
-        <script id="tmpl-store" type="text/x-jquery-tmpl">
-			<li class="thumb arrow">
-				<strong>${name}</strong>
-			</li>
-		</script>
 		
-		<script id="tmpl-products" type="text/x-jquery-tmpl">
-			<li class="thumb arrow">
-                <img src="${img}" />
+		<script id="tmpl-product" type="text/x-jquery-tmpl">
+			<li class="thumb arrow" data-product-id="${id}">
+                <img src="${imagemSmall}" />
                 <div>
                     <strong>${name}</strong>
-                    <small>${brand} - ${description}</small>
-                    <span class="text tiny opacity"><span class="brand-color">€ ${price} - </span>${alt_price} /lt</span>
+                    <small>${marca} - ${descricao}</small>
+                    <span class="text tiny opacity"><span class="brand-color">€ ${preco} - </span>${precoAlternativo}</span>
                 </div>
             </li>
 		</script>

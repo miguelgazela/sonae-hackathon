@@ -1,3 +1,4 @@
+
 <?php
 include_once('../../common/init.php');
 
@@ -14,20 +15,17 @@ function addProduto($idprod, $idcat, $name, $marca, $descricao, $preco, $precoal
 
 function getProdutoById($idproduto) {
     global $db;
+    $result = $db->prepare("SELECT * FROM produtos WHERE id = ?");
+    $result->execute(array($idproduto));
+    return $result->fetch();
 
-    $query = "SELECT * FROM produtos WHERE id ='$idproduto'";
-
-    $resq = $db->query($query);
-    return $resq->fetchAll();
 }
 
 function getProdutoByCategoria($idcategoria){
-	global $db;
-
-    $query = "SELECT * FROM produtos WHERE idCategoria ='$idcategoria'";
-
-    $resq = $db->query($query);
-    return $resq->fetchAll();
+    global $db;
+    $result = $db->prepare("SELECT * FROM produtos WHERE idCategoria = ?");
+    $result->execute(array($idcategoria));
+    return $result->fetchAll();
 }
 
 ?>
