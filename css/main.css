@@ -14,7 +14,7 @@ body > aside {
 }
 
 body > section > header {
-  background-color: #e74c3c;
+  background-color: #e00915;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -66,11 +66,11 @@ section > footer > nav > a.active {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  color: #e74c3c;
+  color: #e00915;
 }
 
 section > footer > nav > .current {
-  color: #e74c3c;
+  color: #e00915;
 }
 
 section .list {
@@ -88,7 +88,7 @@ section .list li > .submenu {
 }
 
 section .list li.selectable:active {
-  background-color: #e74c3c;
+  background-color: #e00915;
 }
 
 section .list li.selectable:active .brand-color {
@@ -105,7 +105,7 @@ section .list li.selectable:active .brand-color {
 }
 
 .brand-color {
-  color: #e74c3c;
+  color: #e00915;
 }
 
 #product-detail {
@@ -202,6 +202,7 @@ article .button.btn-list {
   -webkit-animation-name: outToRight;
 }
 
+<<<<<<< HEAD
 #list-promos::-webkit-scrollbar { display: none}
 #list-promos { 
 	padding-top: 5px;
@@ -316,3 +317,12 @@ article .button.btn-list {
 
 
 
+=======
+body > section > footer {
+  box-shadow: 0 0 3px 1px rgba(0,0,0,0.1), inset 0 -20px 30px 0px rgba(0,0,0,0.1);
+}
+
+body > section > header {
+  box-shadow: 0 0 3px 1px rgba(0,0,0,0.7), inset 0 -20px 30px 0px rgba(0,0,0,0.1);
+}
+>>>>>>> figo

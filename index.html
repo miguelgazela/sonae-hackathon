@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="css/lungo.theme.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/search.css">
 
     </head>
     <body>        
@@ -45,13 +46,44 @@
             </header>
                         
 
-            <article id="search">
-                <div class="empty">
-                    <span class="icon search"></span>
-                    <strong>Product Search</strong>
-                    <small>You will have an awesome search tool</small>
+            <article id="main-article">
+            <div class="empty">
+                <img class="search-init-page-elem" src="img/logo_continente.png" width="100%" />
+                <strong class="search-init-page-elem" style="text-align: left; margin-left: 30px;">Já sabe o que quer comprar?</strong>
+                <div class="form">
+                    <fieldset id="search-bar" data-icon="search">
+                        <input name="currency" class="biginput" id="autocomplete" type="search" placeholder="Pesquisar:" onfocus="searchTouched();">
+                    </fieldset>
+                </div>           
+                <strong class="search-init-page-elem" style="position: absolute; bottom: 50px;">Ainda não? Espreite a nossa loja...</strong>
+                <div class="list indenteds scroll search-results">
+                    <h1>
+                        <span data-icon="star" style="color: rgba(255,255,0,0.9);"></span>
+                        Produtos em promoção
+                    </h1>
+                    <div id="promotions-results">
+                        <ul>
+                        </ul>
+                    </div>
+                    <h1>
+                        <span data-icon="user" style="color: rgba(0,255,200,0.6);"></span>
+                        Produtos sugeridos
+                    </h1>
+                    <div id="suggested-results">
+                        <ul>
+                        </ul>
+                    </div>
+                    <h1>
+                        <span data-icon="plus" style="color: rgba(200,200,200,0);"></span>
+                        Todos
+                    </h1>
+                    <div id="general-results">
+                        <ul>
+                        </ul>
+                    </div>
                 </div>
-            </article>
+            </div>
+        </article>
 
             <article id="store" class="list indenteds scroll">
                 <!-- <div class="empty">
@@ -162,9 +194,9 @@
                 </ul>
             </article>
     
-            <footer>
+            <footer style="text-shadow: 1px 1px 1px #BBB;">
                 <nav>
-                    <a href="#" data-view-article="search" data-icon="search" data-title="Pesquisa"></a>
+                    <a href="#" data-view-article="main-article" data-icon="search" data-title="Pesquisa"></a>
                     <a href="#" data-view-article="store" data-icon="sitemap" data-title="Loja"></a>
                     <a href="#" data-view-article="favorites" data-icon="star" data-title="Favoritos"></a>
                     <a href="#" data-view-article="lists" data-icon="list" data-title="Listas"></a>
@@ -209,6 +241,17 @@
                 </div>
             </li>
         </script>
+
+        <script id="tmpl-search" type="text/x-jquery-tmpl">
+    <li class="thumb arrow">
+    <img src="${img}" />
+    <div>
+    <strong>${name}</strong>
+    <small>${marca} - ${descricao}</small>
+    <span class="text tiny opacity"><span class="brand-color">€ ${preco} - </span>${precoAlternativo} /lt</span>
+    </div>
+    </li>
+    </script>
         
         
        <script id="tmpl-promo" type="text/x-jquery-tmpl">
