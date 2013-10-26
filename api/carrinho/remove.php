@@ -1,15 +1,14 @@
-<?php
-    header('Content-Type: application/json');
-    
+<?php    
     include_once('../../common/init.php');
-    include_once('../../database/carrinho.php');
 
-    if(!isset($_GET['user'])) {
-            return "Error! UsernameID not set";
-        }
+    if(!isset($_GET['iduser'])) {
+        die();
+    }
     if(!isset($_GET['idproduto'])) {
-            return "Error! UsernameID not set";
-        }
+        die();
+    }
 
-    return json_encode(removeCarrinho($_GET['user'],$_GET['idproduto']));
+    global $db;
+    $result = $db->prepare("DELETE FROM produtosCarrinho WHERE idUser = ? AND idProduto = ?");
+    $result->execute(array($_GET["iduser"], $_GET["idproduto"]));
 ?>

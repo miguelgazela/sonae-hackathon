@@ -1,8 +1,23 @@
-var BASE_PATH2 = "http://172.30.17.248:8888/sonae-hackathon/";
-var BASE_PATH = "http://localhost:8888/sonae-hackathon/";
+var BASE_PATH = "http://172.30.17.248:8888/sonae-hackathon/";
+var BASE_PATH2 = "http://localhost:8888/sonae-hackathon/";
 
 $(document).ready(function(){
     console.log("jQuery working!");
+
+    $.getJSON(BASE_PATH+"api/carrinho/get.php?iduser=1", function(data){
+        $("#tmpl-cart-product").tmpl(data).appendTo("#list-cart-products");
+
+        $$('#shopping-cart .cart-item').swipeLeft(function(){
+            var li = $(this);
+
+            li.addClass("push out left").one("webkitAnimationEnd", function(){
+                li.removeClass("push out left");
+            });
+            $.get(BASE_PATH+"api/carrinho/remove.php?iduser=1&idproduto="+li.attr("data-product-id"), function(data){
+                li.remove();
+            });
+        });
+    });
 
     $$('li.favorite').swipeLeft(function(){
         var li = $(this);
@@ -49,7 +64,20 @@ Lungo.dom('#products').on('load', function(){
 			var object = $(this);
 
 			// add to cart
-            $.get(BASE_PATH+"api/carrinho/add.php?iduser=1&idproduto="+object.attr("data-product-id")+"&quantidade=1");
+            $.getJSON(BASE_PATH+"api/carrinho/add.php?iduser=1&idproduto="+object.attr("data-product-id")+"&quantidade=1", function(data){
+                $("#list-cart-products").append('<li class="cart-item" data-product-id="'+data['id']+'"><div class="tag on-right">1x</div><strong>'+data['name']+'</strong><small>'+data["marca"]+'</small><small>&euro '+data["preco"]+'</small></li>');
+                
+                setTimeout(function(){
+                    var seen = {};
+                    $('#list-cart-products .cart-item').each(function() {
+                        var id = $(this).attr("data-product-id");
+                        if (seen[id])
+                            $(this).remove();
+                        else
+                            seen[id] = true;
+                    });
+                }, 200);
+            });
 
 			object.addClass('animate-fast selected').one("webkitAnimationEnd", function(){
 				object.removeClass("animate-fast selected");
@@ -101,7 +129,20 @@ Lungo.dom('#favorites').on('load', function(event){
             var object = $(this);
 
             // add to cart
-            $.get(BASE_PATH+"api/carrinho/add.php?iduser=1&idproduto="+object.attr("data-product-id")+"&quantidade=1");
+            $.get(BASE_PATH+"api/carrinho/add.php?iduser=1&idproduto="+object.attr("data-product-id")+"&quantidade=1", function(data){
+                $("#list-cart-products").append('<li class="cart-item"><div class="tag on-right">1x</div><strong>'+data['name']+'</strong><small>'+data["marca"]+'</small><small>&euro '+data["preco"]+'</small></li>');
+                
+                setTimeout(function(){
+                    var seen = {};
+                    $('#list-cart-products .cart-item').each(function() {
+                        var id = $(this).attr("data-product-id");
+                        if (seen[id])
+                            $(this).remove();
+                        else
+                            seen[id] = true;
+                    });
+                }, 200);
+            });
 
             object.addClass('animate-fast selected').one("webkitAnimationEnd", function(){
                 object.removeClass("animate-fast selected");
@@ -123,6 +164,28 @@ Lungo.dom('#product-detail').on('load', function(){
 
     $.getJSON(BASE_PATH+"api/products/get.php?idproduto="+$('#product-detail').attr('data-product-id'), function(data){
         $("#tmpl-product-detail").tmpl(data).appendTo("#product-detail");
+    });
+});
+
+/*$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+        $("#list-cart-products").empty('li');
+        $("#tmpl-cart-product").tmpl(data.products).appendTo("#list-cart-products");
+});
+    
+$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+        $("#show-checkout").empty('li');
+        $("#tmpl-checkout").tmpl(data.products).appendTo("#show-checkout");
+});*/
+
+
+Lungo.dom('#features').on('load', function(event){
+    console.log("Loading shopping-cart");
+    alert("easdas");
+    
+    //$.getJSON("tmp-data/favorites.json"", function(data){
+    $.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+        $("#list-cart-products").empty('li');
+        $("#tmpl-cart-product").tmpl(data.products).appendTo("#list-cart-products");
     });
 });
 
@@ -149,6 +212,25 @@ function transition(toPage, type, reverse) {
     
     fromPage.addClass(type + " out " + reverse);
 }
+
+Lungo.dom('#store').on('load', function(event){
+	console.log("Loading store");
+
+	//$.getJSON("tmp-data/favorites.json"", function(data){
+
+	$.getJSON("http://172.30.17.43:8888/tmp-data/favorites.json", function(data){
+
+
+		$("#list-categories").empty('li');
+		$("#tmpl-store").tmpl(data.categories).appendTo("#list-categories");
+
+
+		$$("#list-categories > li").singleTap(function(){
+			var object = $(this);
+			Lungo.Router.article("main", "products");
+		});
+	});
+});
 
 /* Create an array to hold the different image positions */
 var itemPositions = [];

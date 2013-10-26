@@ -2,11 +2,13 @@
     header('Content-Type: application/json');
     
     include_once('../../common/init.php');
-    include_once('../../database/carrinho.php');
 
-    if(!isset($_GET['user'])) {
-            return "Error! UsernameID not set";
-        }
+    if(!isset($_GET['iduser'])) {
+        die();
+    }
 
-    return json_encode(getCarrinho($_GET['user']));
+    global $db;
+    $result = $db->prepare("SELECT * from produtos, produtosCarrinho WHERE produtos.id = produtosCarrinho.idProduto AND produtosCarrinho.idUser = ? ORDER BY produtos.name ASC");
+    $result->execute(array($_GET['iduser']));
+    die(json_encode($result->fetchAll())); 
 ?>

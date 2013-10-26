@@ -28,16 +28,14 @@
         <link rel="stylesheet" href="css/main.css">
 
     </head>
-    <body>
-        
-        <!--<section id="main" data-transition="slide" data-aside="features" class="drag">-->
-        <section id="main" data-transition="slide" class="drag">
+    <body>        
+        <section id="main" data-transition="slide" class="drag" data-aside="features">
             <header data-title="Pesquisa">
                 <nav>
                     <a href="#" data-view-aside="features" data-article="search" data-icon="shopping-cart"></a>
+                    <a href="#" data-view-aside="features" data-article="store" data-icon="shopping-cart"></a>
                     <a href="#" data-view-aside="features" data-article="favorites" data-icon="shopping-cart"></a>
                     <a href="#" data-view-aside="features" data-article="products" data-icon="shopping-cart"></a>
-                    <a href="#" data-view-aside="features" data-article="store" data-icon="shopping-cart"></a>
                     <a href="#" class="back" data-icon="chevron-left" data-article="product-detail" data-view-article="favorites"></a>
                 </nav>
                 <nav class="on-right">
@@ -45,6 +43,7 @@
                     <a href="#" data-view-aside="features" data-view-article="add_list" data-title="Nova Lista" data-article="lists" data-icon="sign"></a>
                 </nav>
             </header>
+                        
 
             <article id="search">
                 <div class="empty">
@@ -171,6 +170,30 @@
                 <a href="#" class="button anchor btn-favorite margin-bottom" data-icon="star">Marcar como favorito</a>
             </div>
         </script>
+
+        <aside id="features" data-transition="left">
+		    <header data-title="Carrinho">
+		        <nav class="on-right">
+		            <a href="#" class="buttons" data-icon="settings"></a>
+		        </nav>
+		    </header>
+		    <article id ="shopping-cart" class="list scroll active">
+		    	<ul>
+		            <li data-icon="question-sign">
+		                <p>Aqui pode visualizar todas as suas compras</p>
+		            </li>
+		    	</ul>
+				<ul id="show-checkout">     
+		            <!--<li data-async="static/sections/checkout.html">
+		                <p>Checkout<a style="float:right" data-icon="arrow-right"></a></p>
+		                <a class="tag">10</a>
+		            </li>-->
+				</ul>
+				<ul id="list-cart-products">
+				
+		       </ul>
+			 </article>
+		</aside>
           
         <script id="tmpl-favorite" type="text/x-jquery-tmpl">
             <li class="thumb arrow favorite" data-product-id="${id}">
@@ -197,6 +220,24 @@
                 </div>
             </li>
 		</script>
+		
+		<script id="tmpl-checkout" type="text/x-jquery-tmpl">
+			<li class="thumb arrow">
+                <p>Checkout<a style="float:right" data-icon="arrow-right"></a></p>
+                <a class="tag">20${total}</a>
+            </li> 
+		</script>
+		
+		<script id="tmpl-cart-product" type="text/x-jquery-tmpl">
+			<li class="cart-item" data-product-id="${id}">
+                <div class="tag on-right">${quantidade}x</div>
+                <strong>${name}</strong>
+                <small>${marca}</small>
+                <small>€ ${preco}</small>
+            </li>
+		</script>
+		
+		
 		
         <script src="js/vendor/quo.js"></script>
         <script src="js/vendor/lungo.js"></script>

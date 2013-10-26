@@ -9,6 +9,10 @@ body > section > [data-control="pull"] a {
   color: #333;
 }
 
+body > aside {
+	background-color: #00000;
+}
+
 body > section > header {
   background-color: #e74c3c;
   -webkit-box-shadow: none;

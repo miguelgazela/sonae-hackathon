@@ -11,7 +11,7 @@
 
     global $db;
     //$result = $db->prepare("SELECT listas.* FROM listasUsers, listas WHERE listas.id = listasUsers.idLista AND listasUsers = ?");
-    $result = $db->prepare("SELECT ");
+    $result = $db->prepare("SELECT * from listas;");
     $result->execute(array($_GET['iduser']));
     $listas = $result->fetchAll();
 
