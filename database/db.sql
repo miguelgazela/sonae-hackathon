@@ -71,6 +71,12 @@ CREATE TABLE produtosCarrinho (
     FOREIGN KEY(idProduto) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
+CREATE TABLE searchTags (
+    idTag INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag text NOT NULL UNIQUE,
+    resultsCount INTEGER NOT NULL
+);
+
 insert into users values(null, "Miguel", "password");
 insert into users values(null, "Caldas", "password");
 insert into users values(null, "Rui", "password");
