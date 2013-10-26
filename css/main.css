@@ -2,6 +2,17 @@
   display: none;
 }
 
+body > section > article,
+body > section > [data-control="pull"],
+body > section > article a,
+body > section > [data-control="pull"] a {
+  color: #333;
+}
+
+body > aside {
+	background-color: #00000;
+}
+
 body > section > header {
   background-color: #e74c3c;
   -webkit-box-shadow: none;
@@ -62,18 +73,18 @@ section > footer > nav > .current {
   color: #e74c3c;
 }
 
-section .list li {
+section .list {
   position: relative;
 }
 
 section .list li > .submenu {
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   height: 100%;
   width: 100%;
   z-index: 1;
-  background-color: black;
+  background-color: #fff;
 }
 
 section .list li.selectable:active {
@@ -97,8 +108,63 @@ section .list li.selectable:active .brand-color {
   color: #e74c3c;
 }
 
+#product-detail {
+  background-color: #fff;
+  text-align: center;
+}
+
+#product-detail > .buttons {
+  margin-top: 15px;
+}
+
+.img-big {
+  display: block;
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.form input[type="text"]:focus {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+article button.btn-favorite,
+article .button.btn-favorite {
+  background-color: #f1c40f;
+}
+
+article button.btn-list,
+article .button.btn-list {
+  background-color: #e74c3c;
+}
 
 /* ANIMATIONS */
+
+.animate-fast {
+  -webkit-animation-timing-function: ease-in-out; 
+  -webkit-animation-duration: 300ms;
+}
+
+@-webkit-keyframes selected { 
+  from { background-color: #fff; } 
+  50% { background-color: #2ecc71; } 
+  to { background-color: #fff; } 
+}
+
+@-webkit-keyframes favorited { 
+  from { background-color: #fff; } 
+  50% { background-color: #f1c40f; } 
+  to { background-color: #fff; } 
+}
+
+.animate-fast.selected {
+  -webkit-animation-name: selected;
+}
+
+.animate-fast.favorited {
+  -webkit-animation-name: favorited;
+}
 
 .in, 
 .out { 
@@ -135,3 +201,118 @@ section .list li.selectable:active .brand-color {
 .push.out.right {
   -webkit-animation-name: outToRight;
 }
+
+#list-promos::-webkit-scrollbar { display: none}
+#list-promos { 
+	padding-top: 5px;
+	padding-bottom: 5px;
+	overflow-x: hidden;
+}
+
+#scroller {
+  width: 128px;
+  height: 128px;
+  margin: 0 auto;
+  -webkit-perspective: 128px;
+  -moz-perspective: 128px;
+  -o-perspective: 128px;
+}
+
+#scroller .item {
+  width: 128px;
+  display: block;
+  position: absolute;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.85, transparent), to(rgba(255,255,255,0.15)));
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  z-index: 0;
+}
+
+/* Since inset shadows don't play nice with images, we'll create a pseudo element and apply our image styling to that instead */
+#scroller .item:before {
+  width: 128px;
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 0 1px rgba(0,0,0,0.4);
+}
+
+#scroller .item img {
+  display: block;
+}
+
+#scroller .left {
+  -webkit-transform: rotateY(25deg) translateX(-120px) skewY(-5deg) scale(0.4, 0.6);
+  -moz-transform: rotateY(25deg) translateX(-320px) skewY(-5deg) scale(0.4, 0.6);
+  -o-transform: rotateY(25deg) translateX(-320px) skewY(-5deg) scale(0.4, 0.6);
+}
+
+#scroller .middle {
+  z-index:1;
+  -webkit-transform: rotateY(0deg) translateX(0) scale(1);
+  -moz-transform: rotateY(0deg) translateX(0) scale(1);
+  -o-transform: rotateY(0deg) translateX(0) scale(1);
+}
+
+#scroller .right {
+  -webkit-transform: rotateY(-25deg) translateX(120px) skewY(5deg) scale(0.4, 0.6);
+  -moz-transform: rotateY(-25deg) translateX(320px) skewY(5deg) scale(0.4, 0.6);
+  -o-transform: rotateY(-25deg) translateX(320px) skewY(5deg) scale(0.4, 0.6);
+}
+
+#scroller .left-hidden {
+  opacity: 0;
+  z-index: -1;
+  -webkit-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
+  -moz-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
+  -o-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
+}
+
+#scroller .right-hidden {
+  opacity: 0;
+  z-index: -1;
+  -webkit-transform: rotateY(-25deg) translateX(430px) skewY(5deg) scale(0.3, 0.5);
+  -moz-transform: rotateY(-25deg) translateX(430px) skewY(5deg) scale(0.3, 0.5);
+  -o-transform: rotateY(-25deg) translateX(430px) skewY(5deg) scale(0.3, 0.5);
+}
+
+.nav {
+  position: absolute;
+  width: 128px;
+  height: 30px;
+  margin: 170px 0 0;
+  z-index: 2;
+  display: none;
+}
+
+.prev, .next {
+  position: absolute;
+  display: block;
+  height: 30px;
+  width: 30px;
+  background-color: rgba(0,0,0,0.85);
+  border-radius:15px;
+  color: #E4E4E4;
+  bottom: 15px;
+  left: 15px;
+  text-align: center;
+  line-height: 26px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 0 0 1px rgba(0,0,0,0.7);
+}
+
+.next {
+  left: inherit;
+  right: 15px;
+}
+
+.prev:hover, .next:hover {
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5), 0 0 0 1px rgba(0,0,0,0.7);                
+}
+
+
+
+

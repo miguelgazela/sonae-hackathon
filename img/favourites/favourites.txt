@@ -1,0 +1,11 @@
+{
+"products": [
+	{ "name": "Água sem Gás Sport", "brand": "Continente", "description": "emb. 50cl", "price": "0.29", "img": "img/products/1.png"},
+	{ "name": "Arroz Selvagem", "brand": "Caçarola", "description": "emb. 500 gr.", "price: "2,90", "img": "img/products/2.png"},
+	{ "name": "Novilho Bife do Lombo", "brand": "Continente", "description": "emb. 468 gr. (aprox.)", "price: "26,99 /kg" "img": "img/products/3"},
+	{ "name": "Leite UHT Meio Gordo", "brand": "Agros", "description": "emb. 1 lt", "price":"0,62" "img": "img/products/4"},
+	{ "name": "Gelado Baunilha Pera Caramelo", "brand": "Carte D'Or", "description": "emb. 900 ml", "price":"3,79" "img": "img/products/5"},
+	{ "name": "Toalhitas para Bebé Rosto", "brand": "Corine de Farme", "description": "emb. 25 un", "price":"2,09" "img": "img/products/6"},
+	{ "name": "Escova de Dentes Extra Clean Média", "brand": "Colgate", "description": "2 un.", "price":"1,99" "img": "img/products/7"},
+	{ "name": "Detergente Manual Loiça Regular", "brand": "Fairy", "description": "emb. 1015 ml ", "price":"3,39" "img": "img/products/8"},
+]}
