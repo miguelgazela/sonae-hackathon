@@ -1,9 +1,53 @@
 $(document).ready(function(){
-    $$('li.selectable').swipeLeft(function(){
+    console.log("jQuery working!");
+
+    $$('li').swipeLeft(function(){
         var li = $(this);
         li.addClass("push out left").one("webkitAnimationEnd", function(){
             li.removeClass("push out left");
             li.remove();
+        });
+    });
+});
+
+Lungo.dom('#product-detail').on('load', function(){
+    // load product detail
+});
+
+Lungo.dom('#favorites').on('load', function(event){
+    console.log("Loading favorites");
+
+    //$.getJSON("http://localhost:8888/sonae-hackathon/tmp-data/favorites.json", function(data){
+    $.getJSON("http://172.30.16.53:8888/sonae-hackathon/tmp-data/favorites.json", function(data){
+        $("#list-favorites").empty('li');
+        $("#tmpl-favorite").tmpl(data.products).appendTo("#list-favorites");
+
+        $$("#list-favorites > li").doubleTap(function(){
+            var object = $(this);
+
+            // add to cart
+
+            object.addClass('animate-fast selected').one("webkitAnimationEnd", function(){
+                object.removeClass("animate-fast selected");
+            });
+        });
+
+        $$("#list-favorites > li").hold(function(){ // this cannot be done in favorites
+            var object = $(this);
+
+            // mark as favorite
+            object.addClass('animate-fast favorited').one("webkitAnimationEnd", function(){
+                object.removeClass("animate-fast favorited");
+            });
+        });
+
+        $$("#list-favorites > li").singleTap(function(){
+            var object = $(this);
+
+            // go to detail product
+
+            $('#product-detail').attr('data-product-id', 1);
+            Lungo.Router.article("main", "product-detail");
         });
     });
 });

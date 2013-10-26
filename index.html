@@ -32,9 +32,11 @@
         
         <!--<section id="main" data-transition="slide" data-aside="features" class="drag">-->
         <section id="main" data-transition="slide" class="drag">
-            <header data-title="Search">
+            <header data-title="Pesquisa">
                 <nav>
-                    <a href="#" data-view-aside="features" data-icon="menu"></a>
+                    <a href="#" data-view-aside="features" data-article="search" data-icon="shopping-cart"></a>
+                    <a href="#" data-view-aside="features" data-article="favorites" data-icon="shopping-cart"></a>
+                    <a href="#" class="back" data-icon="chevron-left" data-article="product-detail" data-view-article="favorites"></a>
                 </nav>
                 <nav class="on-right">
                     <button data-article="layout-shopping-cart" data-icon="ok"></button>
@@ -42,7 +44,7 @@
                 </nav>
             </header>
 
-            <article id="main-article">
+            <article id="search">
                 <div class="empty">
                     <span class="icon search"></span>
                     <strong>Product Search</strong>
@@ -50,8 +52,7 @@
                 </div>
             </article>
             
-
-            <article id="layout-store">
+            <article id="store">
                 <div class="empty">
                     <span class="icon sitemap"></span>
                     <strong>Store</strong>
@@ -59,23 +60,29 @@
                 </div>
             </article>
 
-            <article id="layout-favorites">
+            <article id="product-detail">
+                <img src="img/products/big.jpg" class="img-big"/>
+                <h1>Product Name</h1>
+                <h3>Brand</h3>
+                <p>Description - lorem ipsum stuff</p>
+                <small>€ 20,19</small>
+                <
+            </article>
+
+            <article id="favorites" class="list indenteds scroll">
+                <ul id="list-favorites">
+                    
+                </ul>
+                <!--
                 <div class="empty">
                     <span class="icon star"></span>
-                    <strong>No favorites</strong>
-                    <small>When you mark a product as a favorite it will show up here.</small>
+                    <strong>Sem favoritos</strong>
+                    <small>Quando marcar um produto como favorito ele irá aparecer aqui</small>
                 </div>
+            -->
             </article>
 
-            <article id="layout-shopping-cart">
-                <div class="empty">
-                    <span class="icon shopping-cart"></span>
-                    <strong>Shopping Cart is Empty</strong>
-                    <small>When you add a product to your cart it will show up here.</small>
-                </div>
-            </article>
-
-            <article id="layout-lists" class="list indenteds scroll">
+            <article id="lists" class="list indenteds scroll">
                 <ul>
                     <li class="selectable arrow">
                         <a href="#">
@@ -84,9 +91,6 @@
                             <small>4 produtos</small>
                             <div class="on-right">Total: <span class="brand-color">20,75€</span></div>
                         </a>
-                        <div class="submenu">
-                            submenu here
-                        </div>
                     </li>
                     <li class="selectable arrow">
                         <a href="#">
@@ -109,22 +113,25 @@
     
             <footer>
                 <nav>
-                    <a href="#" data-view-article="main-article" data-icon="search"></a>
-                    <a href="#" data-view-article="layout-store" data-icon="sitemap"></a>
-                    <a href="#" data-view-article="layout-favorites" data-icon="star"></a>
-                    <a href="#" data-view-article="layout-shopping-cart" data-icon="shopping-cart"></a>
-                    <a href="#" data-view-article="layout-lists" data-icon="list"></a>
+                    <a href="#" data-view-article="search" data-icon="search" data-title="Pesquisa"></a>
+                    <a href="#" data-view-article="store" data-icon="sitemap" data-title="Loja"></a>
+                    <a href="#" data-view-article="favorites" data-icon="star" data-title="Favoritos"></a>
+                    <a href="#" data-view-article="lists" data-icon="list" data-title="Listas"></a>
+                    <a href="#" data-view-article="options" data-icon="cog" data-title="Opções"></a>
                 </nav>
             </footer>
 
         </section>
-
           
-        <script id="tmpl-user" type="text/x-jquery-tmpl">
-          <a href="#" class="list-group-item">
-            <h4 class="list-group-item-heading">${name}</h4>
-            <p class="list-group-item-text">${fav_color}</p>
-          </a>
+        <script id="tmpl-favorite" type="text/x-jquery-tmpl">
+            <li class="thumb arrow">
+                <img src="${img}" />
+                <div>
+                    <strong>${name}</strong>
+                    <small>${brand} - ${description}</small>
+                    <span class="text tiny opacity"><span class="brand-color">€ ${price} - </span>${alt_price} /lt</span>
+                </div>
+            </li>
         </script>
 
         <script src="js/vendor/quo.js"></script>
