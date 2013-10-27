@@ -1,6 +1,5 @@
 <?php 
     include_once('../../common/init.php');
-    include_once('../../database/favoritos.php');
 
     header('Content-type: application/json');
 
@@ -9,5 +8,8 @@
         die(json_encode($response));
     }
 
-    die(json_encode(get($_GET['iduser'])));
+    global $db;
+    $result = $db->prepare("SELECT produtos.* from produtos, produtosFavoritos WHERE produtos.id = produtosFavoritos.idProduto AND produtosFavoritos.idUser = ? ORDER BY produtos.name ASC");
+    $result->execute(array($_GET['iduser']));
+    die(json_encode($result->fetchAll()));
 ?>

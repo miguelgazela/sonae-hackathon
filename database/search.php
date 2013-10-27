@@ -2,7 +2,7 @@
 include_once('../../common/init.php');
 global $db;
 
-$search = $_POST['search'];;
+$search = $_POST['search'];
 $tags = explode(" ", $search);
 $tag = $tags[0];
 

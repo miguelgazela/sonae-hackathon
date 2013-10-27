@@ -81,10 +81,18 @@ function getProdutos($idlista) {
 
 function getNumMembers($id){
     global $db;
-    $result = $db->prepare("SELECT count(idUser) FROM listasUsers WHERE idLista = ?");
+    $result = $db->prepare("SELECT count(*) as counter FROM listasUsers WHERE idLista = ?");
     $result->execute(array($id));
-    return $result->fetch();
+    return $result->fetch()['counter'];
 }
+
+function getNumProdutos($id){
+    global $db;
+    $result = $db->prepare("SELECT count(*) as counter FROM listasProdutos WHERE idLista = ?");
+    $result->execute(array($id));
+    return $result->fetch()['counter'];
+}
+
 
 function getListas($iduser) {
     global $db;

@@ -1,6 +1,5 @@
 <?php
     function add($iduser,$idproduto) {
-
         global $db;
         $result = $db->prepare("INSERT INTO produtosFavoritos VALUES (?,?)");
         $result->execute(array($iduser, $idproduto));

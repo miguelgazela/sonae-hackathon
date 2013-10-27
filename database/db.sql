@@ -136,13 +136,19 @@ insert into produtosFavoritos values(1, 2);
 insert into produtosFavoritos values(1, 3);
 insert into produtosFavoritos values(1, 8);
 
-insert into listas values(null, "Hachathon Sonae", 1);
+insert into listas values(null, "Hackathon Sonae", 1);
 insert into listas values(null, "Aniversário", 3);
+
+insert into listasProdutos values(1, 1, 1);
+insert into listasProdutos values(1, 2, 3);
+insert into listasProdutos values(1, 3, 2);
+insert into listasProdutos values(2, 1, 2);
 
 insert into listasUsers values(1, 1);
 insert into listasUsers values(1, 2);
 insert into listasUsers values(1, 4);
 insert into listasUsers values(2, 1);
+insert into listasUsers values(2, 2);
 
 
 

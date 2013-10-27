@@ -1,5 +1,6 @@
 <?php    
     include_once('../../common/init.php');
+    include_once('../../database/listas.php');
     
     header('Content-Type: application/json');
 
@@ -14,7 +15,8 @@
     $listas = $result->fetchAll();
 
     foreach($listas as &$lista) {
-        $lista["members"] = getNumMembers($lista['id']);
+        $lista['members'] = getNumMembers($lista['id']);
+        $lista['produtos'] = getNumProdutos($lista['id']);
     }
 
     die(json_encode($listas));

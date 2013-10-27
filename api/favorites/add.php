@@ -1,6 +1,5 @@
 <?php 
     include_once('../../common/init.php');
-    include_once('../../database/favoritos.php');
 
     if(!isset($_GET['iduser'])) {
         die();
@@ -9,5 +8,7 @@
         die();
     }
     
-    add($_GET['iduser'], $_GET['idproduto']);
+    global $db;
+    $result = $db->prepare("INSERT INTO produtosFavoritos VALUES (?,?)");
+    $result->execute(array($_GET['iduser'], $_GET['idproduto']));
 ?>

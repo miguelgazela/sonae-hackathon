@@ -1,6 +1,6 @@
 
 <?php
-include_once('../../common/init.php');
+    include_once('../../common/init.php');
 
 function addProduto($idprod, $idcat, $name, $marca, $descricao, $preco, $precoalternativo, $imagemlarge, $imagemsmall){
 	global $db;

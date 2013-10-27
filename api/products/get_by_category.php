@@ -1,6 +1,5 @@
 <?php 
     include_once('../../common/init.php');
-    include_once('../../database/produtos.php');
 
     header('Content-type: application/json');
 
@@ -9,5 +8,8 @@
         die(json_encode($response));
     }
 
-    die(json_encode(getProdutoByCategoria($_GET['idcategoria'])));
+    global $db;
+    $result = $db->prepare("SELECT * FROM produtos WHERE idCategoria = ?");
+    $result->execute(array($_GET['idcategoria']));
+    die(json_encode($result->fetchAll()));
 ?>

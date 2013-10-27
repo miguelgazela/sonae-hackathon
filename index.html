@@ -34,56 +34,29 @@
             <header data-title="Pesquisa">
                 <nav>
                     <a href="#" data-view-aside="features" data-article="search" data-icon="shopping-cart"></a>
+                    <a href="#" class="back" data-icon="chevron-left" data-article="" data-view-article="favorites"></a>
+                    <a href="#" data-view-aside="features" data-article="lists" data-icon="shopping-cart"></a>
                     <a href="#" data-view-aside="features" data-article="store" data-icon="shopping-cart"></a>
                     <a href="#" data-view-aside="features" data-article="favorites" data-icon="shopping-cart"></a>
                     <a href="#" data-view-aside="features" data-article="products" data-icon="shopping-cart"></a>
                     <a href="#" class="back" data-icon="chevron-left" data-article="product-detail" data-view-article="favorites"></a>
+                    <a href="#" class="back" data-icon="chevron-left" data-article="add_list" data-view-article="lists"></a>
+                    <a href="#" class="back" data-icon="chevron-left" data-article="shared-list" data-view-article="lists"></a>
                 </nav>
                 <nav class="on-right">
-                    <button data-article="layout-shopping-cart" data-icon="ok"></button>
-                    <a href="#" data-view-aside="features" data-view-article="add_list" data-title="Nova Lista" data-article="lists" data-icon="sign"></a>
+                    <a href="#" data-view-article="add_list" data-title="Nova Lista" data-article="lists" data-icon="sign"></a>
                 </nav>
             </header>
                         
 
-            <article id="main-article">
-            <div class="empty">
-                <img class="search-init-page-elem" src="img/logo_continente.png" width="100%" />
-                <strong class="search-init-page-elem" style="text-align: left; margin-left: 30px;">Já sabe o que quer comprar?</strong>
-                <div class="form">
-                    <fieldset id="search-bar" data-icon="search">
-                        <input name="currency" class="biginput" id="autocomplete" type="search" placeholder="Pesquisar:" onfocus="searchTouched();">
-                    </fieldset>
-                </div>           
-                <strong class="search-init-page-elem" style="position: absolute; bottom: 50px;">Ainda não? Espreite a nossa loja...</strong>
-                <div class="list indenteds scroll search-results">
-                    <h1>
-                        <span data-icon="star" style="color: rgba(255,255,0,0.9);"></span>
-                        Produtos em promoção
-                    </h1>
-                    <div id="promotions-results">
-                        <ul>
-                        </ul>
+            <article id="search">
+                    <div class="empty">
+                        <span class="icon search"></span>
+                        <strong>Pesquisa Instantânea</strong>
+                        <small>O melhor motor de pesquisa a seguir ao google!</small>
                     </div>
-                    <h1>
-                        <span data-icon="user" style="color: rgba(0,255,200,0.6);"></span>
-                        Produtos sugeridos
-                    </h1>
-                    <div id="suggested-results">
-                        <ul>
-                        </ul>
-                    </div>
-                    <h1>
-                        <span data-icon="plus" style="color: rgba(200,200,200,0);"></span>
-                        Todos
-                    </h1>
-                    <div id="general-results">
-                        <ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </article>
+                </article>
+            </article>
 
             <article id="store" class="list indented scroll">
                 <!-- <div class="empty">
@@ -115,6 +88,45 @@
             	<ul id="list-products"></ul>
             </article>
 
+            <article id="lists" class="list scroll">
+                <ul id="shared-lists">
+                </ul>
+            </article>
+
+            <article id="shared-list" class="list scroll">
+                <ul>
+                    <li class="anchor contrast">Membros da lista</li>
+                    <li>Miguel</li>
+                    <li>Rui</li>
+                    <li>David</li>
+                    <li class="anchor contrast">Produtos na lista</li>
+                    <li class="thumb">
+                        <img src="img/small/25.jpg" />
+                        <div>
+                            <strong>Pilhas Alcalinas</strong>
+                            <small>Continente - 2 un</small>
+                            <span class="text tiny opacity"><span class="brand-color">€ 4,19 /un - </span>€ 4,19 /un</span>
+                        </div>
+                    </li>
+                    <li class="thumb">
+                        <img src="img/small/17.jpg" />
+                        <div>
+                            <strong>Soro Fisiológico</strong>
+                            <small>Continente - emb. 60 ml</small>
+                            <span class="text tiny opacity"><span class="brand-color">€ 0,39 /un - </span>€ 6,50 /lt</span>
+                        </div>
+                    </li>
+                    <li class="thumb">
+                        <img src="img/small/4.jpg" />
+                        <div>
+                            <strong>Vodka</strong>
+                            <small>Moskovskaya - garrafa 70 cl</small>
+                            <span class="text tiny opacity"><span class="brand-color">€ 10,79 /un - </span>€ 15,41/ lt</span>
+                        </div>
+                    </li>
+                </ul>
+            </article>
+
             <article id="product-detail" class="scroll"></article>
             
 
@@ -141,43 +153,14 @@
                     </ul>
                 </div>
             </article>
-
-            <article id="lists" class="list indenteds scroll">
-                <ul>
-                    <li class="selectable arrow">
-                        <a href="#">
-                            <div class="on-right" data-icon="user">1 membro</div>
-                            <strong>Items pessoais</strong>
-                            <small>4 produtos</small>
-                            <div class="on-right">Total: <span class="brand-color">20,75€</span></div>
-                        </a>
-                    </li>
-                    <li class="selectable arrow">
-                        <a href="#">
-                            <div class="on-right" data-icon="group">2 membros</div>
-                            <strong>Churrasco Ana</strong>
-                            <small>13 produtos</small>
-                            <div class="on-right">Total: <span class="brand-color">34,30€</span></div>
-                        </a>
-                    </li>
-                    <li class="selectable arrow">
-                        <a href="#">
-                            <div class="on-right" data-icon="group">4 membros</div>
-                            <strong>Compras mensais casa</strong>
-                            <small>31 produtos</small>
-                            <div class="on-right">Total: <span class="brand-color">129,90€</span></div>
-                        </a>
-                    </li>
-                </ul>
-            </article>
     
             <footer>
                 <nav>
-                    <a href="#" data-view-article="main-article" data-icon="search" data-title="Pesquisa"></a>
+                    <a href="#" data-view-article="search" data-icon="search" data-title="Pesquisa"></a>
                     <a href="#" data-view-article="store" data-icon="sitemap" data-title="Loja"></a>
                     <a href="#" data-view-article="favorites" data-icon="star" data-title="Favoritos"></a>
                     <a href="#" data-view-article="lists" data-icon="list" data-title="Listas"></a>
-                    <a href="#" data-view-article="options" data-icon="cog" data-title="Opções"></a>
+                    
                 </nav>
             </footer>
 
@@ -209,7 +192,7 @@
 		            <a href="#" class="buttons" data-icon="settings"></a>
 		        </nav>
 		    </header>
-		    <article id ="shopping-cart" class="list scroll active">
+		    <article id="shopping-cart" class="list scroll active">
 		    	<ul>
 		            <li data-icon="question-sign">
 		                <p>Aqui pode visualizar todas as suas compras</p>
@@ -237,21 +220,20 @@
                 </div>
             </li>
         </script>
-
-        <script id="tmpl-search" type="text/x-jquery-tmpl">
-    <li class="thumb arrow">
-    <img src="${img}" />
-    <div>
-    <strong>${name}</strong>
-    <small>${marca} - ${descricao}</small>
-    <span class="text tiny opacity"><span class="brand-color">€ ${preco} - </span>${precoAlternativo} /lt</span>
-    </div>
-    </li>
-    </script>
         
-       <script id="tmpl-promo" type="text/x-jquery-tmpl">
-       <!--	<a class="item" href="#"><img src=${img} width="500" height="200" /></a>-->
-       </script>
+        <script id="tmpl-promo" type="text/x-jquery-tmpl">
+        <!--	<a class="item" href="#"><img src=${img} width="500" height="200" /></a>-->
+        </script>
+
+        <script id="tmpl-shared-list" type="text/x-jquery-tmpl">
+            <li class="arrow" data-list-id="${id}">
+                <a href="#">
+                    <div class="on-right" data-icon="group">${members} membros</div>
+                    <strong>${name}</strong>
+                    <small>${produtos} produtos</small>
+                </a>
+            </li>
+        </script>
 		
 		<script id="tmpl-product" type="text/x-jquery-tmpl">
 			<li class="thumb arrow" data-product-id="${id}">
@@ -262,13 +244,6 @@
                     <span class="text tiny opacity"><span class="brand-color">€ ${preco} - </span>${precoAlternativo}</span>
                 </div>
             </li>
-		</script>
-		
-		<script id="tmpl-checkout" type="text/x-jquery-tmpl">
-			<li class="thumb arrow">
-                <p>Checkout<a style="float:right" data-icon="arrow-right"></a></p>
-                <a class="tag">20${total}</a>
-            </li> 
 		</script>
 		
 		<script id="tmpl-cart-product" type="text/x-jquery-tmpl">
